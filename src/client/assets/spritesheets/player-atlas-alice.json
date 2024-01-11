@@ -1,0 +1,43 @@
+{
+	"frames": [
+		{
+			"filename": "alice-walk-0",
+			"frame": {
+				"w": 512,
+				"h": 512,
+				"x": 0,
+				"y": 0
+			},
+			"anchor": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+        {
+			"filename": "alice-walk-1",
+			"frame": {
+				"w": 512,
+				"h": 512,
+				"x": 512,
+				"y": 0
+			},
+			"anchor": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+        {
+			"filename": "alice-stand",
+			"frame": {
+				"w": 512,
+				"h": 512,
+				"x": 0,
+				"y": 0
+			},
+			"anchor": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		}
+	]
+}
