@@ -16,7 +16,10 @@ const io = new Server(server, {
 
 const PORT = 3000;
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 io.on('connection', (socket) => {
   console.log(`Player connected: ${socket.id}`);
