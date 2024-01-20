@@ -77,6 +77,7 @@ export class RoomScene extends MultiScene {
             () => {
                 this.socket.emit('startGame', this.room);
                 this.scene.start('beginner-scene', {
+                    isSingle: false,
                     socket: this.socket,
                     room: this.room,
                     characters: this.getCharacterMap()

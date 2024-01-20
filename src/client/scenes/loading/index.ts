@@ -17,7 +17,7 @@ export class LoadingScene extends Scene {
         this.load.atlas('a-alice', 'spritesheets/player-sheet-alice.png', 'spritesheets/player-atlas-alice.json');
         this.load.image({
             key: 'tileset',
-            url: 'tilemaps/tiles/tileset.png',
+            url: 'tilemaps/tiles/tileset2.png',
           });
         this.load.tilemapTiledJSON('map', 'tilemaps/json/map.json');
     }

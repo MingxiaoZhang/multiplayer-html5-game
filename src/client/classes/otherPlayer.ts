@@ -1,10 +1,11 @@
 import { MAX_JUMP, MIN_JUMP, PLAYER_SCALE, PLAYER_SIZE_X, PLAYER_SIZE_Y } from '../../utils/constants';
 import { Beginner } from '../scenes';
+import { GameScene } from '../scenes/gameScene';
 import { Actor } from './actor';
 export class OtherPlayer extends Actor {
   playerId: string;
   character: string;
-  constructor(scene: Phaser.Scene, x: number, y: number, character: string, playerId: string) {
+  constructor(scene: GameScene, x: number, y: number, character: string, playerId: string) {
     super(scene, x, y, `a-${character}`, 'stand');
     this.playerId = playerId;
     this.character = character;

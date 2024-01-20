@@ -14,7 +14,10 @@ export class MenuScene extends MultiScene {
             this.cameras.main.height / 2 - 80,
             250,
             60,
-            () => {this.startScene('beginner-scene')}
+            () => {this.scene.start('beginner-scene', {
+                socket: this.socket,
+                isSingle: true
+            })}
         );
         this.createButton('Create Room',
             this.cameras.main.width / 2,

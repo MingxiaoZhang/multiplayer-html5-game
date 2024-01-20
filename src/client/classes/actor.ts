@@ -1,8 +1,9 @@
 import { Physics } from 'phaser';
 import { PLAYER_SCALE } from '../../utils/constants';
+import { GameScene } from '../scenes/gameScene';
 export class Actor extends Physics.Arcade.Sprite {
 	protected hp = 100;
-  constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | number) {
+  constructor(scene: GameScene, x: number, y: number, texture: string, frame?: string | number) {
     super(scene, x, y, texture, frame);
     scene.add.existing(this);
     scene.physics.add.existing(this);

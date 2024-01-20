@@ -8,7 +8,7 @@ export function initPlayers(roomPlayers: { [playerId: string]: PlayerRoomData })
     Object.keys(roomPlayers).forEach((id, index) => {
         gamePlayers[id] = {
             playerId: id,
-            px: index * 100 + 100,
+            px: index * 100 + 200,
             py: 0,
             vx: 0,
             vy: 0

@@ -1,5 +1,6 @@
 import { MAX_JUMP, MIN_JUMP, PLAYER_SCALE, PLAYER_SIZE_X, PLAYER_SIZE_Y } from '../../utils/constants';
 import { Beginner } from '../scenes';
+import { GameScene } from '../scenes/gameScene';
 import { Actor } from './actor';
 export class Player extends Actor {
   playerId: string;
@@ -12,7 +13,7 @@ export class Player extends Actor {
   private keyJ: Phaser.Input.Keyboard.Key | undefined;
   private keyK: Phaser.Input.Keyboard.Key | undefined;
   character: string;
-  constructor(scene: Phaser.Scene, x: number, y: number, character: string, playerId: string) {
+  constructor(scene: GameScene, x: number, y: number, character: string, playerId: string) {
     super(scene, x, y, `a-${character}`, `${character}-stand`);
     this.playerId = playerId;
     this.character = character;
@@ -34,21 +35,23 @@ export class Player extends Actor {
     this.getBody().setOffset(0, 0);
   }
   update(): void {
-    if ((Math.abs(this.getBody().velocity.x) > 10 
-      || Math.abs(this.getBody().velocity.y) > 10) 
-      && (this.prevX !== this.getBody().position.x
-      || this.prevY !== this.getBody().position.y)) {
-      (this.scene as Beginner).socket.emit('playerMoveEmit', {
-        vx: (this.prevX !== this.getBody().position.x) ? this.getBody().velocity.x : 0,
-        vy: (this.prevY !== this.getBody().position.y) ? this.getBody().velocity.y : 0,
-      });
-      this.prevX = this.getBody().position.x;
-      this.prevY = this.getBody().position.y;
-    } else {
-      (this.scene as Beginner).socket.emit('playerStopEmit', {
-        px: this.getBody().position.x + 25,
-        py: this.getBody().position.y + 40,
-      });
+    if (!(this.scene as GameScene).isSingle){
+      if ((Math.abs(this.getBody().velocity.x) > 10 
+        || Math.abs(this.getBody().velocity.y) > 10) 
+        && (this.prevX !== this.getBody().position.x
+        || this.prevY !== this.getBody().position.y)) {
+        (this.scene as Beginner).socket.emit('playerMoveEmit', {
+          vx: (this.prevX !== this.getBody().position.x) ? this.getBody().velocity.x : 0,
+          vy: (this.prevY !== this.getBody().position.y) ? this.getBody().velocity.y : 0,
+        });
+        this.prevX = this.getBody().position.x;
+        this.prevY = this.getBody().position.y;
+      } else {
+        (this.scene as Beginner).socket.emit('playerStopEmit', {
+          px: this.getBody().position.x + 25,
+          py: this.getBody().position.y + 40,
+        });
+      }
     }
     if (this.getBody().onFloor()) {
       this.getBody().setVelocityX(0);

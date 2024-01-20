@@ -6,7 +6,12 @@
   "scripts": {
     "cli-dev": "cross-env NODE_ENV=development webpack serve",
     "svr-dev": "nodemon --exec node --loader ts-node/esm src/server/index.ts",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build-cli": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "start": "node dist/index.js",
+    "postinstall": "tsc",
+    "watch-node": "nodemon dist/index.js",
+    "watch-ts": "tsc -w",
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "author": "Mixeal524",
   "license": "ISC",
