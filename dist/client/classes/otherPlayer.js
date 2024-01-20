@@ -1,0 +1,49 @@
+import { PLAYER_SCALE, PLAYER_SIZE_X, PLAYER_SIZE_Y } from '../../utils/constants';
+import { Actor } from './actor';
+export class OtherPlayer extends Actor {
+    playerId;
+    character;
+    constructor(scene, x, y, character, playerId) {
+        super(scene, x, y, `a-${character}`, 'stand');
+        this.playerId = playerId;
+        this.character = character;
+        this.initAnimations();
+        // KEYS
+        if (!this.scene.input.keyboard) {
+            return;
+        }
+        // PHYSICS
+        this.getBody().setSize(PLAYER_SIZE_X, PLAYER_SIZE_Y);
+        this.getBody().setOffset(100, 0);
+    }
+    update() {
+        if (this.getBody().velocity.x < 0) {
+            this.scaleX = PLAYER_SCALE;
+            this.getBody().setOffset(100, 0);
+            !this.anims.isPlaying && this.anims.play('run', true);
+        }
+        else if (this.getBody().velocity.x > 0) {
+            this.scaleX = -1 * PLAYER_SCALE;
+            this.getBody().setOffset(PLAYER_SIZE_X + 100, 0);
+            !this.anims.isPlaying && this.anims.play('run', true);
+        }
+        else {
+            this.anims.pause();
+            this.setFrame(`${this.character}-stand`);
+        }
+    }
+    initAnimations() {
+        this.scene.anims.create({
+            key: 'run',
+            frames: this.scene.anims.generateFrameNames(`a-${this.character}`, {
+                prefix: `${this.character}-walk-`,
+                end: 1,
+            }),
+            frameRate: 6,
+        });
+    }
+    setPlayerPosition(x, y) {
+        this.setPosition(x, y);
+    }
+}
+//# sourceMappingURL=otherPlayer.js.map
