@@ -8,7 +8,7 @@
     "svr-dev": "nodemon --exec node --loader ts-node/esm src/server/index.ts",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "start-server": "ts-node --esm --transpile-only src/server/index.ts",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master"
+    "deploy": "git add . && git commit -m Heroku && git push heroku main"
   },
   "author": "Mixeal524",
   "license": "ISC",
